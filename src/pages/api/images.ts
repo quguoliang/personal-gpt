@@ -67,7 +67,12 @@ export const post: APIRoute = async ({ request }) => {
     const { data: images = [], error } = data;
 
     if (error?.message) {
-      throw new Error(error.message);
+      return new Response(
+        JSON.stringify({
+          msg: error?.message,
+        }),
+        { status: 500 }
+      );
     }
 
     return new Response(

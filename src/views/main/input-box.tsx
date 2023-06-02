@@ -43,8 +43,10 @@ function InputBox(props: IInputBox) {
   };
 
   const onSendData = () => {
-    setInputValue('');
-    onSend(inputValue);
+    if (!loading) {
+      setInputValue('');
+      onSend(inputValue);
+    }
   };
 
   const onOpenSpeak = () => {
