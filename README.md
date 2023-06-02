@@ -1,50 +1,70 @@
-<section id="nice" data-tool="mdnice编辑器" data-website="https://www.mdnice.com" style="font-size: 16px; color: black; padding: 0 10px; line-height: 1.6; word-spacing: 0px; letter-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: left; font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><div align="center" data-tool="mdnice编辑器">
-<h1 style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 24px;">PERSONAL GPT</h1>
+
+<div align='center'>
+<h1>PERSONAL GPT</h1>
 是时候拥有一个属于你自己的ChatGPT了
-<p style="padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black; font-size: 15px; padding: 5px; text-align: center;"><a href="https://quguoliang.netlify.app/" style="text-decoration: none; color: #1e6bb8; word-wrap: break-word; font-weight: bold; border-bottom: 1px solid #1e6bb8; font-size: 15px;">在线demo</a></p>
-<p style="padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black; font-size: 15px; padding: 5px; text-align: center;">一键部署  <a href="https://app.netlify.com/start/repos/quguoliang%2Fpersonal-gpt" style="text-decoration: none; color: #1e6bb8; word-wrap: break-word; font-weight: bold; border-bottom: 1px solid #1e6bb8; font-size: 15px;"><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e9fba3431bb64421b47489b271d1db2d~tplv-k3u1fbpfcp-zoom-1.image" alt width="20%" style="display: block; margin: 0 auto; max-width: 100%;"></a></p>
+
+[在线demo](https://quguoliang.netlify.app/)
+
+一键部署  [<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e9fba3431bb64421b47489b271d1db2d~tplv-k3u1fbpfcp-zoom-1.image" alt="" width="20%">](https://app.netlify.com/start/repos/quguoliang%2Fpersonal-gpt)
+
 </div>
-<figure data-tool="mdnice编辑器" style="margin: 0; margin-top: 10px; margin-bottom: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center;"><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/32f542b345dd4e738a8ab4151496287e~tplv-k3u1fbpfcp-watermark.image?" alt style="display: block; margin: 0 auto; max-width: 100%;"></figure>
-<h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px; display: table; margin: 30px auto 20px auto; background-image: linear-gradient(to left, rgb(253, 213, 231), rgb(194, 226, 249)); border-style: solid; border-width: 1px; border-radius: 0px; border-color: rgb(62, 62, 62);"><span class="prefix" style="display: none;"></span><span class="content" style="display: block; font-size: 18px; border: 1px solid black; padding: 10px; transform: translate3d(-5px, -5px, 0px);">功能列表</span><span class="suffix"></span></h2>
-<ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
-<li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">支持文本对话</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">支持生成图片（DALL·E模型）</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">支持文本朗读以及语音输入，让你能够流利的与AI对话（主要目的是我可以练口语：)）</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">支持语速、语言的调整</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">支持语言模型调整，目前免费的即是gpt-3.5，gpt-4需要购买。</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">一键启动/关闭连续对话，gpt普通用户有token限制，连续对话token会累积，超过一定限制则无法连续对话，文本与token的转换可以看官方文档。</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">内置100多条提示，让你的GPT更听话。</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">支持屏幕适配，手机、web均可优雅使用。</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">Netlify部署让你无需科学上网即可开启AI生涯</section></li></ul>
-<h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px; display: table; margin: 30px auto 20px auto; background-image: linear-gradient(to left, rgb(253, 213, 231), rgb(194, 226, 249)); border-style: solid; border-width: 1px; border-radius: 0px; border-color: rgb(62, 62, 62);"><span class="prefix" style="display: none;"></span><span class="content" style="display: block; font-size: 18px; border: 1px solid black; padding: 10px; transform: translate3d(-5px, -5px, 0px);">开始使用</span><span class="suffix"></span></h2>
-<ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
-<li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">申请一个ChatGPT 账号，然后拿到apikey。</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">点击上面一键部署Netlify，用github登录后部署。</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">部署前可选择输入环境变量，具体环境变量看以下列表。</section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">可以调整域名为自己喜欢的名字，或者部署完成后也可以重定向到已购的域名。</section></li></ul>
-<section class="table-container" data-tool="mdnice编辑器" style="overflow-x: auto;"><table style="display: table; text-align: left;">
-<thead>
-<tr style="border: 0; border-top: 1px solid #ccc; background-color: white;">
-<th style="font-size: 16px; border: 1px solid #ccc; padding: 5px 10px; text-align: left; font-weight: bold; background-color: #f0f0f0; min-width: 85px;">环境变量名称</th>
-<th style="font-size: 16px; border: 1px solid #ccc; padding: 5px 10px; text-align: left; font-weight: bold; background-color: #f0f0f0; min-width: 85px;">说明</th>
-</tr>
-</thead>
-<tbody style="border: 0;">
-<tr style="border: 0; border-top: 1px solid #ccc; background-color: white;">
-<td style="font-size: 16px; border: 1px solid #ccc; padding: 5px 10px; text-align: left; min-width: 85px;">OPEN_API_KEY</td>
-<td style="font-size: 16px; border: 1px solid #ccc; padding: 5px 10px; text-align: left; min-width: 85px;">即openAPI的apikey，可在部署前的高级配置填写，也部署完成后填写；填写后只要访问站点就可以使用相关功能，如无配置，则需要在站点的配置中心添加后使用</td>
-</tr>
-<tr style="border: 0; border-top: 1px solid #ccc; background-color: #F8F8F8;">
-<td style="font-size: 16px; border: 1px solid #ccc; padding: 5px 10px; text-align: left; min-width: 85px;">PASSWORD</td>
-<td style="font-size: 16px; border: 1px solid #ccc; padding: 5px 10px; text-align: left; min-width: 85px;">站点密码，为了防止站点被滥用，可以给站点配置密码，当存在密码时，使用相关功能需要在配置中心填写相关密码才可。（如果配置了OPEN_API_KEY，建议配置密码！）</td>
-</tr>
-</tbody>
-</table>
-</section><h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px; display: table; margin: 30px auto 20px auto; background-image: linear-gradient(to left, rgb(253, 213, 231), rgb(194, 226, 249)); border-style: solid; border-width: 1px; border-radius: 0px; border-color: rgb(62, 62, 62);"><span class="prefix" style="display: none;"></span><span class="content" style="display: block; font-size: 18px; border: 1px solid black; padding: 10px; transform: translate3d(-5px, -5px, 0px);">持续更新</span><span class="suffix"></span></h2>
-<ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
-<li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">fork本项目，然后再到Netlify重新部署fork的项目，后续分支有变化会自动同步更新部署。</section></li></ul>
-<h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px; display: table; margin: 30px auto 20px auto; background-image: linear-gradient(to left, rgb(253, 213, 231), rgb(194, 226, 249)); border-style: solid; border-width: 1px; border-radius: 0px; border-color: rgb(62, 62, 62);"><span class="prefix" style="display: none;"></span><span class="content" style="display: block; font-size: 18px; border: 1px solid black; padding: 10px; transform: translate3d(-5px, -5px, 0px);">二次开发</span><span class="suffix"></span></h2>
-<p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black; font-size: 15px; padding: 5px; text-align: center;">首先需要了解的相关内容：</p>
-<ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
-<li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;"><a href="https://astro.build/" style="text-decoration: none; color: #1e6bb8; word-wrap: break-word; font-weight: bold; border-bottom: 1px solid #1e6bb8; font-size: 15px;"> Astro框架</a></section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;"><a href="https://www.tailwindcss.cn/" style="text-decoration: none; color: #1e6bb8; word-wrap: break-word; font-weight: bold; border-bottom: 1px solid #1e6bb8; font-size: 15px;">Tailwindcss</a></section></li><li><section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500; font-size: 15px;">React（应该都会吧....）</section></li></ul>
-<p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black; font-size: 15px; padding: 5px; text-align: center;">fork本项目，然后clone到本地后，在根目录创建一个.env文件，内容如下:</p>
-<pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://files.mdnice.com/user/3441/876cad08-0422-409d-bb5a-08afec5da8ee.svg); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #282c34; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: #abb2bf; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #282c34; border-radius: 5px;">OPEN_API_KEY=<span class="xml" style="line-height: 26px;"><span class="hljs-tag" style="line-height: 26px;">&lt;<span class="hljs-name" style="color: #e06c75; line-height: 26px;">apikey</span>&gt;</span><br></span></code></pre>
-<p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black; font-size: 15px; padding: 5px; text-align: center;">替换你自己的apikey即可。</p>
-<h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px; display: flex; flex-direction: column; align-items: center;"><span class="prefix" style="display: inline-block; width: 40px; height: 20px; background-position: 50% 50%; background-repeat: no-repeat; background-size: contain; background-image: url(https://files.mdnice.com/pic/d1e2129b-30a8-443d-8ebb-a3f7aa09141e.png);"></span><span class="content" style="font-size: 18px; text-shadow: rgb(171 224 225) 3.83022px 3.21394px 0px;">api开发</span><span class="suffix" style="display: none;"></span></h3>
-<p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black; font-size: 15px; padding: 5px; text-align: center;">路径为：
-/src/pages/api</p>
-<h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px; display: flex; flex-direction: column; align-items: center;"><span class="prefix" style="display: inline-block; width: 40px; height: 20px; background-position: 50% 50%; background-repeat: no-repeat; background-size: contain; background-image: url(https://files.mdnice.com/pic/d1e2129b-30a8-443d-8ebb-a3f7aa09141e.png);"></span><span class="content" style="font-size: 18px; text-shadow: rgb(171 224 225) 3.83022px 3.21394px 0px;">页面开发</span><span class="suffix" style="display: none;"></span></h3>
-<p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black; font-size: 15px; padding: 5px; text-align: center;">路径为：
-/src/views</p>
-<h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px; display: flex; flex-direction: column; align-items: center;"><span class="prefix" style="display: inline-block; width: 40px; height: 20px; background-position: 50% 50%; background-repeat: no-repeat; background-size: contain; background-image: url(https://files.mdnice.com/pic/d1e2129b-30a8-443d-8ebb-a3f7aa09141e.png);"></span><span class="content" style="font-size: 18px; text-shadow: rgb(171 224 225) 3.83022px 3.21394px 0px;">配置信息</span><span class="suffix" style="display: none;"></span></h3>
-<p data-tool="mdnice编辑器" style="padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black; font-size: 15px; padding: 5px; text-align: center;">/src/contants</p>
-</section>
+
+![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/32f542b345dd4e738a8ab4151496287e~tplv-k3u1fbpfcp-watermark.image?)
+
+## 功能列表
+
+*   支持文本对话
+*   支持生成图片（DALL·E模型）
+*   支持文本朗读以及语音输入，让你能够流利的与AI对话（主要目的是我可以练口语：)）
+*   支持语速、语言的调整
+*   支持语言模型调整，目前免费的即是gpt-3.5，gpt-4需要购买。
+*   一键启动/关闭连续对话，gpt普通用户有token限制，连续对话token会累积，超过一定限制则无法连续对话，文本与token的转换可以看官方文档。
+*   内置100多条提示，让你的GPT更听话。
+*   支持屏幕适配，手机、web均可优雅使用。
+*   Netlify部署让你无需科学上网即可开启AI生涯
+
+## 开始使用
+
+*   申请一个ChatGPT 账号，然后拿到apikey。
+*   点击上面一键部署Netlify，用github登录后部署。
+*   部署前可选择输入环境变量，具体环境变量看以下列表。
+*   可以调整域名为自己喜欢的名字，或者部署完成后也可以重定向到已购的域名。
+
+| 环境变量名称         | 说明                                                                                  |
+| -------------- | ----------------------------------------------------------------------------------- |
+| OPEN\_API\_KEY | 即openAPI的apikey，可在部署前的高级配置填写，也部署完成后填写；填写后只要访问站点就可以使用相关功能，如无配置，则需要在站点的配置中心添加后使用      |
+| PASSWORD       | 站点密码，为了防止站点被滥用，可以给站点配置密码，当存在密码时，使用相关功能需要在配置中心填写相关密码才可。（如果配置了OPEN\_API\_KEY，建议配置密码！） |
+
+## 持续更新
+
+*   fork本项目，然后再到Netlify重新部署fork的项目，后续分支有变化会自动同步更新部署。
+
+## 二次开发
+
+首先需要了解的相关内容：
+
+*   [ Astro框架](https://astro.build/)
+*   [Tailwindcss](https://www.tailwindcss.cn/)
+*   React（应该都会吧....）
+
+fork本项目，然后clone到本地后，在根目录创建一个.env文件，内容如下:
+
+```js
+OPEN_API_KEY=<apikey>
+```
+
+替换你自己的apikey即可。
+
+### api开发
+
+路径为：
+/src/pages/api
+
+### 页面开发
+
+路径为：
+/src/views
+
+### 配置信息
+
+/src/contants
