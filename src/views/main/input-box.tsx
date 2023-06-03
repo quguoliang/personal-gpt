@@ -27,6 +27,8 @@ function InputBox(props: IInputBox) {
   };
 
   const onResult = (result) => {
+    console.log(334444,result);
+    
     setInputValue(result);
   };
 

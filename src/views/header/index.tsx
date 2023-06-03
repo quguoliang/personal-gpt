@@ -117,15 +117,15 @@ function Header() {
               <Form.Item label="生成图片数量" name="n">
                 <ASlider min={1} max={10} step={1} />
               </Form.Item>
-              <Form.Item label="图片大小" name="size">
+              <Form.Item label="图片大小：" name="size">
                 <Select options={SIZE_OPTIONS} />
               </Form.Item>
             </Collapse.Panel>
             <Collapse.Panel header="语音配置" key="3">
-              <Form.Item label="输入语言" name="speakLang">
+              <Form.Item label="输入语言：" name="speakLang">
                 <Select options={LANGUAGE_OPTIONS} />
               </Form.Item>
-              <Form.Item label="朗读语言" name="voiceLang">
+              <Form.Item label="朗读语言：" name="voiceLang">
                 <Select
                   options={voices.map((item, index) => ({
                     label: item.name,
@@ -133,10 +133,10 @@ function Header() {
                   }))}
                 />
               </Form.Item>
-              <Form.Item label="语速" name="rate">
+              <Form.Item label="语速：" name="rate">
                 <ASlider min={0.5} max={2} step={0.1} />
               </Form.Item>
-              <Form.Item label="语调" name="pitch">
+              <Form.Item label="语调：" name="pitch">
                 <ASlider min={0.5} max={2} step={0.1} />
               </Form.Item>
             </Collapse.Panel>
