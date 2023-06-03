@@ -1,4 +1,3 @@
-import { generateConfigInit, generateConverstationInit } from '@contants';
 import { createContext, type Dispatch, type SetStateAction } from 'react';
 
 export interface IMessage {
@@ -8,7 +7,6 @@ export interface IMessage {
 export interface IConversation {
   id: string;
   type: 'image' | 'text';
-  temperature: number;
   messages: Array<IMessage>;
 }
 
@@ -42,7 +40,21 @@ export const GlobalContext = createContext<{
   setLoading: Dispatch<SetStateAction<boolean>>;
   currentConversation: IConversation;
 }>({
-  config: generateConfigInit(),
+  config: {
+    title: 'PERSONAL GPT',
+    model: 'gpt-3.5-turbo',
+    apiKey: '',
+    temperature: 0.7,
+    currentId: '',
+    n: 1,
+    size: '256x256',
+    isContinuous: true,
+    rate: 1,
+    pitch: 1,
+    speakLang: 'zh',
+    voiceLang: 159,
+    password: '',
+  },
   allConversations: {},
   isMobile: false,
   loading: false,
@@ -50,5 +62,9 @@ export const GlobalContext = createContext<{
   setCurrentConversation: () => {},
   setConfig: () => {},
   setLoading: () => {},
-  currentConversation: generateConverstationInit('text'),
+  currentConversation: {
+    id: 'ewrwerrr',
+    type: 'text',
+    messages: [],
+  },
 });
