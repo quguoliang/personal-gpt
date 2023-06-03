@@ -49,7 +49,7 @@ export const post: APIRoute = async ({ request }) => {
     }
     console.log(55444, data);
 
-    return JSON.stringify(data);
+    return { body: JSON.stringify(data) };
 
     return new Response(
       JSON.stringify({
