@@ -19,7 +19,9 @@ export const post: APIRoute = async ({ request }) => {
 
   if (!key) {
     if (!import.meta.env.OPENAI_API_KEY) {
-      return JSON.stringify({ msg: 'APIKEY 未填写或不存在！' });
+      return new Response(JSON.stringify({ msg: 'APIKEY 未填写或不存在！' }), {
+        status: 500,
+      });
     }
     key = import.meta.env.OPENAI_API_KEY;
   }
@@ -45,7 +47,9 @@ export const post: APIRoute = async ({ request }) => {
         { status: 500 }
       );
     }
-    console.log(55444, data);
+    console.log(55444, data);\
+    
+    return JSON.stringify(data);
 
     return new Response(
       JSON.stringify({
