@@ -34,7 +34,7 @@ const useEventCallback = (fn, dependencies) => {
 
 const useSpeechRecognition = (props = {}) => {
   const { onEnd = () => {}, onResult = () => {}, onError = () => {} } = props;
-  const recognition = useRef(null);
+  const recognition = useRef<any>(null);
   const [listening, setListening] = useState(false);
   const [supported, setSupported] = useState(false);
 
@@ -56,7 +56,13 @@ const useSpeechRecognition = (props = {}) => {
   };
 
   const listen = useEventCallback(
-    (args = {}) => {
+    (args: {
+      lang: string;
+      interimResults: boolean;
+      continuous: boolean;
+      maxAlternatives: number;
+      grammars: any;
+    }) => {
       if (listening || !supported) return;
       const {
         lang = '',

@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Slider from './slider';
 import Header from './header';
 import Main from './main';
-import { GlobalContext, type IConversation } from './GlobalContext';
-import { generateUniqueString } from '../utils/common';
+import {
+  GlobalContext,
+  type IConfig,
+  type IConversation,
+  type IConversations,
+} from './GlobalContext';
 import { useRequest } from 'ahooks';
 import {
   ALL_CONVERSTATIONS,
@@ -15,11 +19,11 @@ import {
 } from '../contants';
 
 function Views() {
-  const [allConversations, setAllConversations] = useState<IConversation[]>([]);
+  const [allConversations, setAllConversations] = useState<IConversations>({});
   const [currentConversation, setCurrentConversation] = useState<IConversation>(
-    {}
+    generateConverstationInit('text')
   );
-  const [config, setConfig] = useState<IConfig>({});
+  const [config, setConfig] = useState<IConfig>(generateConfigInit());
   const [isInit, setIsInit] = useState(true);
   const [loading, setLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);

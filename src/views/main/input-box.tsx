@@ -12,7 +12,7 @@ import prompts from '@/prompts';
 interface IInputBox {
   type: 'text' | 'image';
   loading: boolean;
-  onSend: (value?: string) => void;
+  onSend: (value: string) => void;
 }
 
 function InputBox(props: IInputBox) {
@@ -27,8 +27,6 @@ function InputBox(props: IInputBox) {
   };
 
   const onResult = (result) => {
-    console.log(334444,result);
-    
     setInputValue(result);
   };
 
@@ -77,6 +75,7 @@ function InputBox(props: IInputBox) {
         open={isOpen}
         menu={{
           items: prompts.map((item) => ({
+            key: item.act,
             label: item.act,
             value: item.prompt,
             onClick: () => {

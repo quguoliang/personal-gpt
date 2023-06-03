@@ -1,12 +1,11 @@
 import React from 'react';
-import { Skeleton } from 'antd';
+import { Skeleton, message } from 'antd';
 import ReactMarkdown from 'react-markdown';
 import { CopyFilled, SoundOutlined } from '@ant-design/icons';
 import RemarkMath from 'remark-math';
 import RehypeKatex from 'rehype-katex';
 import RemarkGfm from 'remark-gfm';
 import RemarkBreaks from 'remark-breaks';
-import RehypeHighlight from 'rehype-highlight';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'; // 代码高亮主题风格
 import useSpeechSynthesis from '@/hooks/useSpeechSynthesis';
@@ -19,20 +18,17 @@ interface IAiBubble {
   content: string;
   loading: boolean;
   config: IConfig;
+  isMobile: boolean;
 }
 
 function AiBubble(props: IAiBubble) {
   const { keyIndex, content, loading, config, isMobile } = props;
 
-  const changeLang = (event) => {
-    setLang(event.target.value);
-  };
-
   const onEnd = () => {
     // You could do something here after speaking has finished
   };
 
-  const { speak, cancel, speaking, supported, voices } = useSpeechSynthesis({
+  const { speak, cancel, speaking, voices } = useSpeechSynthesis({
     onEnd,
   });
 
@@ -42,11 +38,17 @@ function AiBubble(props: IAiBubble) {
     } else {
       speak({
         text: content,
-        voice: voices[config.speakLang],
+        voice: voices[config.voiceLang],
         rate: config.rate,
         pitch: config.pitch,
       });
     }
+  };
+
+  const onCopy = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      message.success('复制成功!');
+    });
   };
 
   return (
@@ -88,7 +90,7 @@ function AiBubble(props: IAiBubble) {
                         </SyntaxHighlighter>
                         <CopyFilled
                           className="code-copy-icon cursor-pointer absolute right-7 top-7 text-gray-300 "
-                          onClick={() => onCopy(children[0])}
+                          onClick={() => onCopy(children[0] as string)}
                         />
                       </>
                     ) : (

@@ -1,11 +1,10 @@
-
 <div align='center'>
 <h1>PERSONAL GPT</h1>
 是时候拥有一个属于你自己的ChatGPT了
 
 [在线demo](https://quguoliang.netlify.app/)
 
-一键部署  [<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e9fba3431bb64421b47489b271d1db2d~tplv-k3u1fbpfcp-zoom-1.image" alt="" width="20%">](https://app.netlify.com/start/repos/quguoliang%2Fpersonal-gpt)
+[![Deploy to Netlify](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0fa7e21562ad412585947d84ac7d08e8~tplv-k3u1fbpfcp-zoom-1.image)](https://app.netlify.com/start/deploy?repository=https://github.com/quguoliang/personal-gpt#OPENAI_API_KEY=\&PASSWORD=)
 
 </div>
 
@@ -15,7 +14,7 @@
 
 *   支持文本对话
 *   支持生成图片（DALL·E模型）
-*   支持文本朗读以及语音输入，让你能够流利的与AI对话（主要目的是我可以练口语：)）
+*   支持文本朗读以及语音输入，让你能够流利的与AI对话（主要目的是可以练口语：)）
 *   支持语速、语言的调整
 *   支持语言模型调整，目前免费的即是gpt-3.5，gpt-4需要购买。
 *   一键启动/关闭连续对话，gpt普通用户有token限制，连续对话token会累积，超过一定限制则无法连续对话，文本与token的转换可以看官方文档。

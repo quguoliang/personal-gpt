@@ -1,15 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Input, message, Tooltip, Button } from 'antd';
-import { CopyFilled, BulbOutlined, HistoryOutlined } from '@ant-design/icons';
-import { GlobalContext } from '@views/GlobalContext';
-import ReactMarkdown from 'react-markdown';
-import RemarkMath from 'remark-math';
-import RehypeKatex from 'rehype-katex';
-import RemarkGfm from 'remark-gfm';
-import RemarkBreaks from 'remark-breaks';
-import RehypeHighlight from 'rehype-highlight';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'; // 代码高亮主题风格
+import { Button } from 'antd';
+import { GlobalContext, type IMessage } from '@views/GlobalContext';
 import InputBox from './input-box';
 import AiBubble from './ai-bubble';
 import UserBubble from './user-bubble';
@@ -24,7 +15,6 @@ function Main() {
     loading,
     setLoading,
     config,
-    setConfig,
     currentConversation,
     setCurrentConversation,
     setAllConversations,
@@ -32,11 +22,11 @@ function Main() {
   } = useContext(GlobalContext);
   const { model, apiKey, n, size, temperature, isContinuous } = config || {};
 
-  const [curMessage, setCurMessage] = useState([]);
-  const [controller, setController] = useState(null);
+  const [curMessage, setCurMessage] = useState<IMessage[]>([]);
+  const [controller, setController] = useState<AbortController | null>(null);
 
   const updateStorage = (params: { type: 'all' | 'cur'; messages: any }) => {
-    const id = currentConversation.id;
+    const id = currentConversation?.id;
     const { type, messages } = params;
     if (type === 'all') {
       setAllConversations((pre) => ({
@@ -56,13 +46,13 @@ function Main() {
     }
   };
 
-  const getGptData = async (messages: { role: string; content: string }[]) => {
+  const getGptData = async (messages: IMessage[]) => {
     setLoading(true);
     const abortController = new AbortController();
     setController(abortController);
     let done = false;
     let answer = '';
-    const modifyMessages = isContinuous
+    const modifyMessages: IMessage[] = isContinuous
       ? [...messages]
       : [...currentConversation.messages, ...messages];
     modifyMessages.push({ role: 'assistant', content: answer });
@@ -82,11 +72,11 @@ function Main() {
 
     if (response.status < 400 && response.ok) {
       const data = response.body;
-      const reader = data.getReader();
+      const reader = data?.getReader();
       const decoder = new TextDecoder();
       while (!done) {
-        const { value, done: doneReading } = await reader.read();
-        done = doneReading;
+        const { value, done: doneReading } = (await reader?.read()) || {};
+        done = !!doneReading;
         const chunkValue = decoder.decode(value);
         answer += chunkValue;
         modifyMessages[modifyMessages.length - 1].content = answer;
@@ -96,7 +86,7 @@ function Main() {
     } else {
       const { msg, error } = await response.json();
       modifyMessages[modifyMessages.length - 1].content =
-        msg || error?.message || res.statusText || 'Unknown';
+        msg || error?.message || response.statusText || 'Unknown';
       setCurMessage(modifyMessages);
       updateStorage({ type: 'cur', messages: modifyMessages });
     }
@@ -155,20 +145,10 @@ function Main() {
     if (currentConversation.type === 'image') {
       await getImageData(value);
     } else {
-      const newMessages = [{ role: 'user', content: value }];
+      const newMessages: IMessage[] = [{ role: 'user', content: value }];
       const messages = currentConversation.messages.concat(newMessages);
       await getGptData(isContinuous ? messages : newMessages);
     }
-  };
-
-  const onCopy = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      message.success('复制成功!');
-    });
-  };
-
-  const onChangeContinuous = () => {
-    setConfig((pre) => ({ ...pre, isContinuous: !config.isContinuous }));
   };
 
   const onStop = () => {
@@ -182,10 +162,10 @@ function Main() {
   };
 
   useEffect(() => {
-    var element = document.getElementById('main-conversation'); // 获取需要滚动的元素
+    var element = document.getElementById('main-conversation') as HTMLElement; // 获取需要滚动的元素
     // 在内容变化时自动滚动到底部
-    element.addEventListener('DOMSubtreeModified', function () {
-      element.scrollTop = element.scrollHeight;
+    element?.addEventListener('DOMSubtreeModified', function () {
+      element.scrollTop = element?.scrollHeight || 0;
     });
   }, []);
 

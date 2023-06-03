@@ -1,7 +1,11 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { Dropdown, Input, message } from 'antd';
 import { PlusOutlined, SearchOutlined, DeleteFilled } from '@ant-design/icons';
-import { GlobalContext, IConversation } from '../GlobalContext';
+import {
+  GlobalContext,
+  type IConversation,
+  type IConversations,
+} from '../GlobalContext';
 import { generateConverstationInit } from '@/contants';
 import './index.css';
 
@@ -30,7 +34,7 @@ function Slider() {
         pre[key] = conversation;
       }
       return pre;
-    }, {});
+    }, {} as IConversations);
 
     return data;
   }, [searchInput]);
@@ -114,7 +118,6 @@ function Slider() {
               },
             ],
           }}
-          on
         >
           <img src="/add.svg" className=" w-5 h-4 text-2xl cursor-pointer" />
         </Dropdown>

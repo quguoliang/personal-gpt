@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 
 const useSpeechSynthesis = (props = {}) => {
   const { onEnd = () => {} } = props;
-  const [voices, setVoices] = useState([]);
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [speaking, setSpeaking] = useState(false);
   const [supported, setSupported] = useState(false);
 
-  const processVoices = (voiceOptions) => {
+  const processVoices = (voiceOptions: SpeechSynthesisVoice[]) => {
     setVoices(voiceOptions);
   };
 
@@ -19,8 +19,8 @@ const useSpeechSynthesis = (props = {}) => {
       return;
     }
 
-    window.speechSynthesis.onvoiceschanged = (event) => {
-      voiceOptions = event.target.getVoices();
+    window.speechSynthesis.onvoiceschanged = (event: any) => {
+      voiceOptions = event?.target?.getVoices();
       processVoices(voiceOptions);
     };
   };
@@ -37,7 +37,13 @@ const useSpeechSynthesis = (props = {}) => {
     }
   }, []);
 
-  const speak = (args = {}) => {
+  const speak = (args: {
+    voice: SpeechSynthesisVoice;
+    text: string;
+    rate: number;
+    pitch: number;
+    volume?: number;
+  }) => {
     const { voice = null, text = '', rate = 1, pitch = 1, volume = 1 } = args;
     if (!supported) return;
     setSpeaking(true);
