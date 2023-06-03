@@ -47,8 +47,8 @@ export const post: APIRoute = async ({ request }) => {
         { status: 500 }
       );
     }
-    console.log(55444, data);\
-    
+    console.log(55444, data);
+
     return JSON.stringify(data);
 
     return new Response(
