@@ -121,6 +121,7 @@ function Main() {
 
     if (res.status < 400 && res.ok) {
       const { data = [], msg } = await res.json();
+
       messages[messages.length - 1].content = data.reduce((pre, cur) => {
         pre += `![图片已过期](${cur}) \n`;
         return pre;

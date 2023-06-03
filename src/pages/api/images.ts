@@ -47,16 +47,10 @@ export const post: APIRoute = async ({ request }) => {
         { status: 500 }
       );
     }
-    console.log(55444, data);
 
-    return { body: JSON.stringify(data) };
-
-    return new Response(
-      JSON.stringify({
-        data: images?.map((img) => img.url) || [],
-      }),
-      { status: 200 }
-    );
+    return {
+      body: JSON.stringify({ data: images?.map((img) => img.url) || [] }),
+    };
   } catch (e) {
     return new Response(JSON.stringify({ msg: e?.message || e?.stack || e }), {
       status: 500,
