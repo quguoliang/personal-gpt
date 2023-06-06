@@ -101,7 +101,7 @@ function Views() {
     >
       <div
         id="views"
-        className="w-2/3 h-2/3 flex rounded-2xl relative"
+        className={`${config.viewSize==='default'?'w-2/3 h-2/3':'w-full h-full'} flex rounded-2xl relative`}
         style={{
           boxShadow:
             'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px',

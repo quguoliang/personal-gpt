@@ -34,6 +34,12 @@ export const LANGUAGE_OPTIONS = [
   { label: 'Svenska - Swedish', value: 'sv-SE' },
 ];
 
+/** 页面展示大小 */
+export const VIEW_OPTIONS= [  
+  { label: '默认', value: 'default' }, 
+  { label: '全屏', value: 'full' },  
+]
+
 /** 全部对话 */
 export const ALL_CONVERSTATIONS = 'ALL_CONVERSTATIONS';
 /** 当前对话 */
@@ -89,4 +95,5 @@ export const generateConfigInit = (id?: string): IConfig => ({
   speakLang: 'zh',
   voiceLang: 159,
   password: '',
+  viewSize:'default'
 });

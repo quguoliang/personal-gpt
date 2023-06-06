@@ -23,6 +23,7 @@ import {
 import Slider from '@views/slider';
 import useSpeechSynthesis from '@/hooks/useSpeechSynthesis';
 import './index.less';
+import VIEW_OPTIONS = require('../../contants');
 
 function Header() {
   const {
@@ -97,6 +98,9 @@ function Header() {
             <Collapse.Panel header="系统配置" key="4">
               <Form.Item label="密码:" name="password">
                 <Input.Password placeholder="请输入密码" />
+              </Form.Item>
+              <Form.Item label="页面大小:" name="viewSize">
+                <Select options={VIEW_OPTIONS}/>
               </Form.Item>
             </Collapse.Panel>
             <Collapse.Panel header="聊天相关" key="1">

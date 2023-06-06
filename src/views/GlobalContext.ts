@@ -1,12 +1,12 @@
 import { createContext, type Dispatch, type SetStateAction } from 'react';
 
 export interface IMessage {
-  role: 'user' | 'assistant';
+  role: 'user' | 'assistant'| 'system';
   content: string;
 }
 export interface IConversation {
   id: string;
-  type: 'image' | 'text';
+  type: 'image' | 'text'| 'system';
   messages: Array<IMessage>;
 }
 
@@ -25,6 +25,7 @@ export interface IConfig {
   voiceLang: number; // 朗读语言
   rate: number; // 语速
   pitch: number; // 音调
+  viewSize: 'default'|'full'
 }
 
 export type IConversations = { [key: string]: IConversation };
@@ -54,6 +55,7 @@ export const GlobalContext = createContext<{
     speakLang: 'zh',
     voiceLang: 159,
     password: '',
+    viewSize:'default'
   },
   allConversations: {},
   isMobile: false,
