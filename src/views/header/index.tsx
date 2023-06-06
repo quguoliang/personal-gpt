@@ -19,11 +19,12 @@ import {
   MODEL_OPTIONS,
   SIZE_OPTIONS,
   generateConverstationInit,
+  VIEW_OPTIONS
 } from '../../contants';
 import Slider from '@views/slider';
 import useSpeechSynthesis from '@/hooks/useSpeechSynthesis';
 import './index.less';
-import VIEW_OPTIONS = require('../../contants');
+
 
 function Header() {
   const {

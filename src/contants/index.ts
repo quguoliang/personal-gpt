@@ -35,7 +35,7 @@ export const LANGUAGE_OPTIONS = [
 ];
 
 /** 页面展示大小 */
-export const VIEW_OPTIONS= [  
+export const VIEW_OPTIONS = [  
   { label: '默认', value: 'default' }, 
   { label: '全屏', value: 'full' },  
 ]
