@@ -1,10 +1,10 @@
 import React from 'react';
 import prompts from '@/prompts';
+import type { IRole } from '@views/GlobalContext';
 import './index.less';
-
 interface IEmpty {
-  type: 'text' | 'image';
-  onSend: (value: string) => void;
+  type: 'text' | 'image' | 'system';
+  onSend: (value: string, role: IRole) => void;
 }
 
 function Empty(props: IEmpty) {
@@ -25,7 +25,7 @@ function Empty(props: IEmpty) {
             {prompts.slice(0, 10).map((item) => {
               return (
                 <div
-                  onClick={() => onSend(item.prompt)}
+                  onClick={() => onSend(item.prompt, 'system')}
                   className="rounded-md border-dashed cursor-pointer border-gra-400 border flex-auto p-3 text-gray-500 transition-colors hover:border-solid hover:border-teal-500 hover:text-teal-500"
                 >
                   {item.act}

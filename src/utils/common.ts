@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 /**
  * 随机生成n位的随机数
  * @param n 位数
@@ -16,3 +18,6 @@ export function generateUniqueString(n: number): string {
 
   return Array.from(set).join('');
 }
+
+/** 获取当前时间 */
+export const getCurrentTime = dayjs().format('YYYY-MM-DD HH:mm:ss');

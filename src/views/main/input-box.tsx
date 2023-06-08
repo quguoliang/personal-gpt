@@ -1,24 +1,28 @@
-import React, { useContext, useState } from 'react';
-import { Dropdown, Input, Tooltip } from 'antd';
+import React, { useContext, useRef, useState } from 'react';
+import { Button, Dropdown, Input, Tooltip } from 'antd';
 import {
   HistoryOutlined,
   SoundOutlined,
   AudioOutlined,
 } from '@ant-design/icons';
-import { GlobalContext } from '@views/GlobalContext';
+import { GlobalContext, type IRole } from '@views/GlobalContext';
 import useSpeechRecognition from '@/hooks/useSpeechRecognition';
 import prompts from '@/prompts';
 
 interface IInputBox {
   type: 'text' | 'image';
   loading: boolean;
-  onSend: (value: string) => void;
+  onSend: (value: string, role?: IRole) => void;
 }
 
 function InputBox(props: IInputBox) {
   const { loading, onSend, type } = props;
   const [inputValue, setInputValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  // 录音相关
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [audioBlob, setAudioBlob] = useState<Blob>();
+  const mediaRecorderRef = useRef<MediaRecorder>();
 
   const { config, setConfig } = useContext(GlobalContext);
 
@@ -50,8 +54,40 @@ function InputBox(props: IInputBox) {
   };
 
   const onOpenSpeak = () => {
-    listening ? stop() : listen({ lang: config.speakLang });
+    // listening ? stop() : listen({ lang: config.speakLang });
+    let audioData: any = []; // 存储录音数据块
+    if (isSpeaking) {
+      mediaRecorderRef.current?.stop();
+    } else {
+      // 请求麦克风权限
+      navigator.mediaDevices
+        .getUserMedia({ audio: true })
+        .then((stream) => {
+          // 创建媒体记录
+          mediaRecorderRef.current = new MediaRecorder(stream, {
+            mimeType: 'audio/webm',
+          });
+          // 开始录制
+          mediaRecorderRef.current.start();
+          // 处理音频数据
+          mediaRecorderRef.current.addEventListener('dataavailable', (ev) => {
+            // 把数据块添加到数组
+            audioData.push(ev.data);
+            console.log(4444555, audioData);
+          });
+          // 录音停止
+          mediaRecorderRef.current.addEventListener('stop', () => {
+            // 把音频数据块转换为 Blob
+            setAudioBlob(new Blob(audioData));
+          });
+        })
+        .catch((info) => {
+          alert('无法获取麦克风权限！错误信息：' + info);
+        });
+    }
+    setIsSpeaking(!isSpeaking);
   };
+  console.log(6555, audioBlob);
 
   return (
     <div className=" absolute w-full bottom-0 left-0 min-h-fit bg-white flex items-center justify-center gap-5 rounded-2xl px-7 py-3">
@@ -63,14 +99,25 @@ function InputBox(props: IInputBox) {
           onClick={onChangeContinuous}
         />
       </Tooltip>
-      <Tooltip title={`${listening ? '关闭' : '打开'}语音输入`}>
+      <Tooltip title={`${isSpeaking ? '关闭' : '打开'}语音输入`}>
         <AudioOutlined
           className={`cursor-pointer ${
-            listening ? 'text-orange-500' : 'text-gray-300'
+            isSpeaking ? 'text-orange-500' : 'text-gray-300'
           }`}
           onClick={onOpenSpeak}
         />
       </Tooltip>
+      <Button
+        onClick={() => {
+          if (audioBlob === null) return false;
+          // 创建一个 URL 资源对象给 Audio 读取
+          const audio = new Audio(URL.createObjectURL(audioBlob as Blob));
+          // 播放音频
+          audio.play();
+        }}
+      >
+        播放
+      </Button>
       <Dropdown
         open={isOpen}
         menu={{
@@ -79,7 +126,7 @@ function InputBox(props: IInputBox) {
             label: item.act,
             value: item.prompt,
             onClick: () => {
-              onSend(item.prompt);
+              onSend(item.prompt, 'system');
               setInputValue('');
               setIsOpen(false);
             },

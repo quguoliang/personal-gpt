@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button } from 'antd';
-import { GlobalContext, type IMessage } from '@views/GlobalContext';
+import { GlobalContext, type IMessage, type IRole } from '@views/GlobalContext';
 import InputBox from './input-box';
 import AiBubble from './ai-bubble';
 import UserBubble from './user-bubble';
+import dayjs from 'dayjs';
 import Empty from './empty';
+import { getCurrentTime } from '@utils/common';
 
 export const config = {
   runtime: 'edge',
@@ -55,7 +57,11 @@ function Main() {
     const modifyMessages: IMessage[] = isContinuous
       ? [...messages]
       : [...currentConversation.messages, ...messages];
-    modifyMessages.push({ role: 'assistant', content: answer });
+    modifyMessages.push({
+      role: 'assistant',
+      content: answer,
+      time: getCurrentTime,
+    });
     updateStorage({ type: 'cur', messages: modifyMessages });
 
     const response = await fetch('/api/completions', {
@@ -63,7 +69,10 @@ function Main() {
       body: JSON.stringify({
         model,
         apiKey,
-        messages,
+        messages: messages.map((item) => ({
+          role: item.role,
+          content: item.content,
+        })),
         temperature,
         password: config?.password,
       }),
@@ -103,8 +112,12 @@ function Main() {
   const getImageData = async (prompt: string) => {
     setLoading(true);
     const messages = currentConversation.messages.concat([
-      { role: 'user', content: prompt },
-      { role: 'assistant', content: '' },
+      {
+        role: 'user',
+        content: prompt,
+        time: getCurrentTime,
+      },
+      { role: 'assistant', content: '', time: '' },
     ]);
     updateStorage({ type: 'cur', messages });
     updateStorage({ type: 'all', messages });
@@ -126,19 +139,21 @@ function Main() {
         pre += `![图片已过期](${cur}) \n`;
         return pre;
       }, '');
+      messages[messages.length - 1].time = getCurrentTime;
       updateStorage({ type: 'cur', messages });
       updateStorage({ type: 'all', messages });
     } else {
       const { msg, error } = await res.json();
       messages[messages.length - 1].content =
         msg || error?.message || res.statusText || 'Unknown';
+      messages[messages.length - 1].time = getCurrentTime;
       setCurMessage(messages);
       updateStorage({ type: 'cur', messages });
     }
     setLoading(false);
   };
 
-  const onSend = async (value: string) => {
+  const onSend = async (value: string, role?: IRole) => {
     if (!value) {
       return;
     }
@@ -146,7 +161,9 @@ function Main() {
     if (currentConversation.type === 'image') {
       await getImageData(value);
     } else {
-      const newMessages: IMessage[] = [{ role: 'user', content: value }];
+      const newMessages: IMessage[] = [
+        { role: role || 'user', content: value, time: getCurrentTime },
+      ];
       const messages = currentConversation.messages.concat(newMessages);
       await getGptData(isContinuous ? messages : newMessages);
     }
@@ -185,19 +202,16 @@ function Main() {
           <Empty onSend={onSend} type={currentConversation.type} />
         )}
         {currentConversation?.messages?.map((message, index) =>
-          message.role === 'user' ? (
-            <UserBubble
-              keyIndex={message.content.slice(0, 10) + index}
-              content={message.content}
-            />
-          ) : (
+          message.role === 'assistant' ? (
             <AiBubble
-              keyIndex={message.content.slice(0, 10) + index}
+              keyIndex={message.time}
               content={message.content}
               loading={loading}
               config={config}
               isMobile={isMobile}
             />
+          ) : (
+            <UserBubble keyIndex={message.time} content={message.content} />
           )
         )}
         {loading && (
