@@ -8,5 +8,5 @@ export function dataURLtoFile(dataurl, filename) {
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
-  return new File([u8arr], filename, { type: mime });
+  return { file: new File([u8arr], filename, { type: mime }), type: mime };
 }

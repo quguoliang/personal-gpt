@@ -70,15 +70,11 @@ function InputBox(props: IInputBox) {
       navigator.mediaDevices
         .getUserMedia({ audio: true })
         .then((stream) => {
-          let options;
-          if (MediaRecorder.isTypeSupported('audio/webm; codecs=vp9')) {
-            options = { mimeType: 'audio/webm; codecs=vp9' };
-          } else if (MediaRecorder.isTypeSupported('audio/webm')) {
+          let options: any;
+          if (MediaRecorder.isTypeSupported('audio/webm')) {
             options = { mimeType: 'audio/webm' };
-          } else if (MediaRecorder.isTypeSupported('audio/mp4')) {
-            options = { mimeType: 'audio/mp4', videoBitsPerSecond: 100000 };
           } else {
-            console.error('no suitable mimetype found for this device');
+            options = { mimeType: 'video/mp4' };
           }
           // const mediaRecorder = new MediaRecorder(stream, options);
           // 创建媒体记录
@@ -92,7 +88,7 @@ function InputBox(props: IInputBox) {
           });
           // 录音停止
           mediaRecorderRef.current.addEventListener('stop', () => {
-            const blob = new Blob(audioData, { type: 'audio/webm' });
+            const blob = new Blob(audioData, { type: options.mimeType });
             const time = getCurrentTime();
             onGetWhisper(time, blob);
             // 把音频数据块转换为 Blob存入数据库

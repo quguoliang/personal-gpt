@@ -1,7 +1,6 @@
 import { BASE_URL } from '@contants';
 import type { APIRoute } from 'astro';
-import { dataURLtoFile, stringToBlob } from '.';
-// import { stringToBlob } from '.';
+import { dataURLtoFile } from '.';
 
 export const post: APIRoute = async ({ request }) => {
   const { apiKey, password, blob } = await request.json();
@@ -30,7 +29,8 @@ export const post: APIRoute = async ({ request }) => {
 
   try {
     const formData = new FormData();
-    formData.append('file', dataURLtoFile(blob, 'test'), 'filename.webm');
+    const { file, type } = dataURLtoFile(blob, 'test');
+    formData.append('file', file, 'filename.' + type.split('/')[1]);
     formData.append('model', 'whisper-1');
     const res = await fetch(`${BASE_URL}/v1/audio/transcriptions`, {
       method: 'POST',
