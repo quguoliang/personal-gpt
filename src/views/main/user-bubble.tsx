@@ -42,9 +42,12 @@ function UserBubble(props: IUserBubble) {
           {type === 'text' ? (
             content
           ) : (
-            <WifiOutlined
-              style={{ transform: 'rotate(-90deg)', fontSize: 22 }}
-            />
+            <>
+              <WifiOutlined
+                style={{ transform: 'rotate(-90deg)', fontSize: 22 }}
+              />
+              {message.content}
+            </>
           )}
         </div>
       </div>
