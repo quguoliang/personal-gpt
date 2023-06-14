@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button } from 'antd';
 import { GlobalContext, type IMessage, type IRole } from '@views/GlobalContext';
 import InputBox from './input-box';
 import AiBubble from './ai-bubble';
 import UserBubble from './user-bubble';
-import dayjs from 'dayjs';
 import Empty from './empty';
 import { getCurrentTime } from '@utils/common';
+import OperateIndexDB from '@indexDB';
 
 export const config = {
   runtime: 'edge',
@@ -26,6 +26,8 @@ function Main() {
 
   const [curMessage, setCurMessage] = useState<IMessage[]>([]);
   const [controller, setController] = useState<AbortController | null>(null);
+
+  const indexDBRef = useRef(new OperateIndexDB('voices', 1));
 
   const updateStorage = (params: { type: 'all' | 'cur'; messages: any }) => {
     const id = currentConversation?.id;
@@ -60,7 +62,8 @@ function Main() {
     modifyMessages.push({
       role: 'assistant',
       content: answer,
-      time: getCurrentTime,
+      time: getCurrentTime(),
+      type: 'text',
     });
     updateStorage({ type: 'cur', messages: modifyMessages });
 
@@ -115,9 +118,10 @@ function Main() {
       {
         role: 'user',
         content: prompt,
-        time: getCurrentTime,
+        time: getCurrentTime(),
+        type: 'text',
       },
-      { role: 'assistant', content: '', time: '' },
+      { role: 'assistant', content: '', time: '', type: 'text' },
     ]);
     updateStorage({ type: 'cur', messages });
     updateStorage({ type: 'all', messages });
@@ -139,30 +143,39 @@ function Main() {
         pre += `![图片已过期](${cur}) \n`;
         return pre;
       }, '');
-      messages[messages.length - 1].time = getCurrentTime;
+      messages[messages.length - 1].time = getCurrentTime();
       updateStorage({ type: 'cur', messages });
       updateStorage({ type: 'all', messages });
     } else {
       const { msg, error } = await res.json();
       messages[messages.length - 1].content =
         msg || error?.message || res.statusText || 'Unknown';
-      messages[messages.length - 1].time = getCurrentTime;
+      messages[messages.length - 1].time = getCurrentTime();
       setCurMessage(messages);
       updateStorage({ type: 'cur', messages });
     }
     setLoading(false);
   };
 
-  const onSend = async (value: string, role?: IRole) => {
+  const onSend = async (
+    value: string,
+    type: 'text' | 'voice',
+    time?: string,
+    role?: IRole
+  ) => {
     if (!value) {
       return;
     }
-
     if (currentConversation.type === 'image') {
       await getImageData(value);
     } else {
       const newMessages: IMessage[] = [
-        { role: role || 'user', content: value, time: getCurrentTime },
+        {
+          role: role || 'user',
+          content: value,
+          time: time || getCurrentTime(),
+          type,
+        },
       ];
       const messages = currentConversation.messages.concat(newMessages);
       await getGptData(isContinuous ? messages : newMessages);
@@ -211,7 +224,7 @@ function Main() {
               isMobile={isMobile}
             />
           ) : (
-            <UserBubble keyIndex={message.time} content={message.content} />
+            <UserBubble message={message} indexDB={indexDBRef.current} />
           )
         )}
         {loading && (
@@ -227,6 +240,7 @@ function Main() {
         loading={loading}
         onSend={onSend}
         type={currentConversation.type}
+        indexDB={indexDBRef.current}
       />
     </div>
   );

@@ -6,6 +6,7 @@ export interface IMessage {
   role: IRole;
   content: string;
   time: string;
+  type?: 'voice' | 'text';
 }
 export interface IConversation {
   id: string;

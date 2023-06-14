@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-
 /**
  * 随机生成n位的随机数
  * @param n 位数
@@ -20,4 +19,19 @@ export function generateUniqueString(n: number): string {
 }
 
 /** 获取当前时间 */
-export const getCurrentTime = dayjs().format('YYYY-MM-DD HH:mm:ss');
+export const getCurrentTime = () => dayjs().format('YYYY-MM-DD HH:mm:ss');
+
+/** blob转换string */
+export function blobToString(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.onload = (e) => {
+      resolve(e.target.result);
+    };
+    // readAsDataURL
+    fileReader.readAsDataURL(blob);
+    fileReader.onerror = () => {
+      reject(new Error('blobToBase64 error'));
+    };
+  });
+}
