@@ -27,10 +27,18 @@ export const post: APIRoute = async ({ request }) => {
     key = import.meta.env.OPENAI_API_KEY;
   }
 
+  const typeMap: any = {
+    'audio/webm': 'webm',
+    'audio/x-m4a': 'm4a',
+    'audio/mpeg': 'mp3',
+    'audio/x-wav': 'wav',
+    'video/mp4': 'mp4',
+  };
+
   try {
     const formData = new FormData();
     const { file, type } = dataURLtoFile(blob, 'test');
-    formData.append('file', file, 'filename.' + type.split('/')[1]);
+    formData.append('file', file, 'filename.' + typeMap[type]);
     formData.append('model', 'whisper-1');
     const res = await fetch(`${BASE_URL}/v1/audio/transcriptions`, {
       method: 'POST',

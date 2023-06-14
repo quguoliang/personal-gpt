@@ -50,8 +50,6 @@ function InputBox(props: IInputBox) {
     });
     if (response.status < 400 && response.ok) {
       const { data = '' } = await response.json();
-      console.log(5555, data);
-
       onSend(data, inputMode, time, 'user');
     } else {
       const { msg, error } = await response.json();
@@ -62,8 +60,8 @@ function InputBox(props: IInputBox) {
   const onRecord = () => {
     let audioData: any = []; // 存储录音数据块
     if (isSpeaking) {
-      setIsSpeaking(false);
       mediaRecorderRef.current?.stop();
+      setIsSpeaking(false);
     } else {
       setIsSpeaking(true);
       // 请求麦克风权限
@@ -73,6 +71,12 @@ function InputBox(props: IInputBox) {
           let options: any;
           if (MediaRecorder.isTypeSupported('audio/webm')) {
             options = { mimeType: 'audio/webm' };
+          } else if (MediaRecorder.isTypeSupported('audio/x-m4a')) {
+            options = { mimeType: 'audio/x-m4a' };
+          } else if (MediaRecorder.isTypeSupported('audio/mpeg')) {
+            options = { mimeType: 'audio/mpeg' };
+          } else if (MediaRecorder.isTypeSupported('audio/x-wav')) {
+            options = { mimeType: 'audio/x-wav' };
           } else {
             options = { mimeType: 'video/mp4' };
           }
