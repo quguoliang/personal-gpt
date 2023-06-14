@@ -70,10 +70,17 @@ function InputBox(props: IInputBox) {
       navigator.mediaDevices
         .getUserMedia({ audio: true })
         .then((stream) => {
+          let options;
+          if (MediaRecorder.isTypeSupported('video/webm; codecs=vp9')) {
+            options = { mimeType: 'video/webm; codecs=vp9' };
+          } else if (MediaRecorder.isTypeSupported('video/webm')) {
+            options = { mimeType: 'video/webm' };
+          } else if (MediaRecorder.isTypeSupported('video/mp4')) {
+            options = { mimeType: 'video/mp4', videoBitsPerSecond: 100000 };
+          }
+          const mediaRecorder = new MediaRecorder(stream, options);
           // 创建媒体记录
-          mediaRecorderRef.current = new MediaRecorder(stream, {
-            mimeType: 'audio/webm',
-          });
+          mediaRecorderRef.current = new MediaRecorder(stream, options);
           // 开始录制
           mediaRecorderRef.current.start();
           // 处理音频数据
