@@ -4,6 +4,7 @@ import {
   SettingOutlined,
   ClearOutlined,
   UnorderedListOutlined,
+  createFromIconfontCN,
 } from '@ant-design/icons';
 import {
   Form,
@@ -38,15 +39,20 @@ function Header() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [sliderVisible, setSliderVisible] = useState(false);
+  const [dark, setDark] = useState(false)
   const { voices } = useSpeechSynthesis();
   const [formInst] = Form.useForm();
+
+  const IconFont = createFromIconfontCN({
+    scriptUrl: '//at.alicdn.com/t/c/font_4132366_15laece0j8k.js',
+  });
 
   const onOpenSetting = () => {
     setIsOpen(true);
   };
 
-  const changeDarkMode = (e) => {
-    if (e) {
+  const changeDarkMode = () => {
+    if (!dark) {
       document.documentElement.classList.add('dark')
       document.body.classList.add('dark')
       document.body.classList.add('dark:bg-gray-700')
@@ -55,6 +61,7 @@ function Header() {
       document.body.classList.remove('dark')
       document.body.classList.remove('dark:bg-gray-700')
     }
+    setDark(!dark)
   }
 
   const onCloseSetting = () => {
@@ -97,10 +104,11 @@ function Header() {
           />
         </Tooltip>
         <Tooltip title="夜间模式">
-          <Switch
-            className="text-gray-400 cursor-pointer ml-3 hover:text-gray-600"
-            onChange={changeDarkMode}
-          />
+          <span onClick={changeDarkMode}>
+            {dark
+              ? <IconFont type='icon-taiyang2' className='text-gray-400 cursor-pointer ml-3 hover:text-gray-600' />
+              : <IconFont type='icon-yueduye-yejianmoshi' className='text-gray-400 cursor-pointer ml-3 hover:text-gray-600' />}
+          </span>
         </Tooltip>
       </div>
       <Drawer
