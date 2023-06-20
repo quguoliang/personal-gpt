@@ -13,6 +13,7 @@ import {
   Collapse,
   Slider as ASlider,
   Tooltip,
+  Switch,
 } from 'antd';
 import {
   LANGUAGE_OPTIONS,
@@ -43,6 +44,18 @@ function Header() {
   const onOpenSetting = () => {
     setIsOpen(true);
   };
+
+  const changeDarkMode = (e) => {
+    if (e) {
+      document.documentElement.classList.add('dark')
+      document.body.classList.add('dark')
+      document.body.classList.add('dark:bg-gray-700')
+    } else {
+      document.documentElement.classList.remove('dark')
+      document.body.classList.remove('dark')
+      document.body.classList.remove('dark:bg-gray-700')
+    }
+  }
 
   const onCloseSetting = () => {
     const values = formInst.getFieldsValue();
@@ -83,6 +96,12 @@ function Header() {
             onClick={onOpenSetting}
           />
         </Tooltip>
+        <Tooltip title="夜间模式">
+          <Switch
+            className="text-gray-400 cursor-pointer ml-3 hover:text-gray-600"
+            onChange={changeDarkMode}
+          />
+        </Tooltip>
       </div>
       <Drawer
         title="配置中心"
@@ -101,7 +120,7 @@ function Header() {
                 <Input.Password placeholder="请输入密码" />
               </Form.Item>
               <Form.Item label="页面大小:" name="viewSize">
-                <Select options={VIEW_OPTIONS}/>
+                <Select options={VIEW_OPTIONS} />
               </Form.Item>
             </Collapse.Panel>
             <Collapse.Panel header="聊天相关" key="1">

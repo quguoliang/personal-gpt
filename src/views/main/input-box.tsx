@@ -106,12 +106,11 @@ function InputBox(props: IInputBox) {
   };
 
   return (
-    <div className=" absolute w-full bottom-0 left-0 min-h-fit bg-white flex items-center justify-center gap-5 rounded-2xl px-7 py-3">
+    <div className=" absolute w-full bottom-0 left-0 min-h-fit bg-white flex items-center justify-center gap-5 rounded-2xl px-7 py-3 dark:bg-gray-700">
       <Tooltip title={`${config.isContinuous ? '关闭' : '开启'}连续对话`}>
         <HistoryOutlined
-          className={`cursor-pointer ${
-            config.isContinuous ? 'text-orange-500' : 'text-gray-300'
-          }`}
+          className={`cursor-pointer ${config.isContinuous ? 'text-orange-500' : 'text-gray-300'
+            }`}
           size={32}
           onClick={onChangeContinuous}
         />
@@ -129,7 +128,7 @@ function InputBox(props: IInputBox) {
       </span>
       {inputMode === 'voice' ? (
         <div
-          className="flex-1 w-full text-center bg-slate-100 rounded-lg text-gray-500 cursor-pointer hover:bg-slate-50"
+          className="flex-1 w-full text-center bg-slate-100 rounded-lg text-gray-500 cursor-pointer hover:bg-slate-50 dark:bg-gray-800 dark:hover:bg-gray-900 dark:focus:ring-gray-700 dark:border-gray-700"
           style={{ lineHeight: '38px' }}
           onClick={onRecord}
         >
@@ -142,6 +141,7 @@ function InputBox(props: IInputBox) {
         </div>
       ) : (
         <Dropdown
+          className='dark:bg-gray-700'
           open={isOpen}
           menu={{
             items: prompts.map((item) => ({
@@ -158,6 +158,7 @@ function InputBox(props: IInputBox) {
           overlayStyle={{ height: 500, overflow: 'auto' }}
         >
           <Input.TextArea
+            classNames={{ textarea: "dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }}
             allowClear
             value={inputValue}
             autoSize={{ minRows: 1, maxRows: 3 }}
@@ -188,9 +189,8 @@ function InputBox(props: IInputBox) {
       {inputMode === 'text' && (
         <img
           src="/send.svg"
-          className={` ${
-            !inputValue || loading ? 'cursor-not-allowed' : 'cursor-pointer'
-          }`}
+          className={` ${!inputValue || loading ? 'cursor-not-allowed' : 'cursor-pointer'
+            }`}
           onClick={onSendData}
         />
       )}
