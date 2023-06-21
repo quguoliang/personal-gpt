@@ -95,8 +95,9 @@ function Slider() {
     >
       <div className="flex items-center justify-between gap-4">
         <Input
+          className='dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
           placeholder="搜索"
-          prefix={<SearchOutlined />}
+          // prefix={<SearchOutlined />}
           size="large"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
@@ -132,10 +133,9 @@ function Slider() {
           return (
             <div
               key={key}
-              className={`flex justify-start items-center gap-2  con-item relative mt-3 cursor-pointer w-auto h-16 rounded-xl py-2 px-3 hover:bg-slate-200 ${
-                currentConversation?.id === conversation?.id &&
+              className={`flex justify-start items-center gap-2  con-item relative mt-3 cursor-pointer w-auto h-16 rounded-xl py-2 px-3 hover:bg-slate-200 ${currentConversation?.id === conversation?.id &&
                 'bg-gradient-to-r from-green-400 to-blue-400 text-white'
-              }`}
+                }`}
               onClick={() => onSelectConversations(conversation)}
               style={{ border: '1px solid #E5E7EB' }}
             >
@@ -152,9 +152,8 @@ function Slider() {
                 </div>
               </div>
               <DeleteFilled
-                className={`delete-icon ${
-                  isMobile ? 'opacity-100' : 'opacity-0'
-                }`}
+                className={`delete-icon ${isMobile ? 'opacity-100' : 'opacity-0'
+                  }`}
                 onClick={(event) =>
                   onDeleteConversation(event, conversation.id)
                 }

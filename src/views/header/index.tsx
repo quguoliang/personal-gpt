@@ -4,6 +4,7 @@ import {
   SettingOutlined,
   ClearOutlined,
   UnorderedListOutlined,
+  createFromIconfontCN,
 } from '@ant-design/icons';
 import {
   Form,
@@ -13,6 +14,7 @@ import {
   Collapse,
   Slider as ASlider,
   Tooltip,
+  Switch,
 } from 'antd';
 import {
   LANGUAGE_OPTIONS,
@@ -37,12 +39,30 @@ function Header() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [sliderVisible, setSliderVisible] = useState(false);
+  const [dark, setDark] = useState(false)
   const { voices } = useSpeechSynthesis();
   const [formInst] = Form.useForm();
+
+  const IconFont = createFromIconfontCN({
+    scriptUrl: '//at.alicdn.com/t/c/font_4132366_15laece0j8k.js',
+  });
 
   const onOpenSetting = () => {
     setIsOpen(true);
   };
+
+  const changeDarkMode = () => {
+    if (!dark) {
+      document.documentElement.classList.add('dark')
+      document.body.classList.add('dark')
+      document.body.classList.add('dark:bg-gray-700')
+    } else {
+      document.documentElement.classList.remove('dark')
+      document.body.classList.remove('dark')
+      document.body.classList.remove('dark:bg-gray-700')
+    }
+    setDark(!dark)
+  }
 
   const onCloseSetting = () => {
     const values = formInst.getFieldsValue();
@@ -83,6 +103,13 @@ function Header() {
             onClick={onOpenSetting}
           />
         </Tooltip>
+        <Tooltip title="夜间模式">
+          <span onClick={changeDarkMode}>
+            {dark
+              ? <IconFont type='icon-taiyang2' className='text-gray-400 cursor-pointer ml-3 hover:text-gray-600' />
+              : <IconFont type='icon-yueduye-yejianmoshi' className='text-gray-400 cursor-pointer ml-3 hover:text-gray-600' />}
+          </span>
+        </Tooltip>
       </div>
       <Drawer
         title="配置中心"
@@ -101,7 +128,7 @@ function Header() {
                 <Input.Password placeholder="请输入密码" />
               </Form.Item>
               <Form.Item label="页面大小:" name="viewSize">
-                <Select options={VIEW_OPTIONS}/>
+                <Select options={VIEW_OPTIONS} />
               </Form.Item>
             </Collapse.Panel>
             <Collapse.Panel header="聊天相关" key="1">
