@@ -21,12 +21,11 @@ import {
   MODEL_OPTIONS,
   SIZE_OPTIONS,
   generateConverstationInit,
-  VIEW_OPTIONS
+  VIEW_OPTIONS,
 } from '../../contants';
 import Slider from '@views/slider';
 import useSpeechSynthesis from '@/hooks/useSpeechSynthesis';
 import './index.less';
-
 
 function Header() {
   const {
@@ -39,7 +38,7 @@ function Header() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [sliderVisible, setSliderVisible] = useState(false);
-  const [dark, setDark] = useState(false)
+  const [dark, setDark] = useState(false);
   const { voices } = useSpeechSynthesis();
   const [formInst] = Form.useForm();
 
@@ -53,16 +52,16 @@ function Header() {
 
   const changeDarkMode = () => {
     if (!dark) {
-      document.documentElement.classList.add('dark')
-      document.body.classList.add('dark')
-      document.body.classList.add('dark:bg-gray-700')
+      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+      document.body.classList.add('dark:bg-gray-700');
     } else {
-      document.documentElement.classList.remove('dark')
-      document.body.classList.remove('dark')
-      document.body.classList.remove('dark:bg-gray-700')
+      document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
+      document.body.classList.remove('dark:bg-gray-700');
     }
-    setDark(!dark)
-  }
+    setDark(!dark);
+  };
 
   const onCloseSetting = () => {
     const values = formInst.getFieldsValue();
@@ -91,6 +90,21 @@ function Header() {
         </div>
       </div>
       <div className="header-operate">
+        <Tooltip title="夜间模式">
+          <span onClick={changeDarkMode}>
+            {dark ? (
+              <IconFont
+                type="icon-taiyang2"
+                className="text-gray-400 cursor-pointer ml-3 hover:text-gray-600"
+              />
+            ) : (
+              <IconFont
+                type="icon-yueduye-yejianmoshi"
+                className="text-gray-400 cursor-pointer ml-3 hover:text-gray-600"
+              />
+            )}
+          </span>
+        </Tooltip>
         <Tooltip title="清除全部对话">
           <ClearOutlined
             className="text-gray-400 cursor-pointer ml-3 hover:text-gray-600"
@@ -102,13 +116,6 @@ function Header() {
             className="text-gray-400 cursor-pointer ml-3 hover:text-gray-600"
             onClick={onOpenSetting}
           />
-        </Tooltip>
-        <Tooltip title="夜间模式">
-          <span onClick={changeDarkMode}>
-            {dark
-              ? <IconFont type='icon-taiyang2' className='text-gray-400 cursor-pointer ml-3 hover:text-gray-600' />
-              : <IconFont type='icon-yueduye-yejianmoshi' className='text-gray-400 cursor-pointer ml-3 hover:text-gray-600' />}
-          </span>
         </Tooltip>
       </div>
       <Drawer
