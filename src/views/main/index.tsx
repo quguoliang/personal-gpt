@@ -6,6 +6,7 @@ import AiBubble from './ai-bubble';
 import UserBubble from './user-bubble';
 import Empty from './empty';
 import { getCurrentTime } from '@utils/common';
+import OperateIndexDB from '@indexDB';
 
 export const config = {
   runtime: 'edge',
@@ -25,6 +26,7 @@ function Main() {
 
   const [curMessage, setCurMessage] = useState<IMessage[]>([]);
   const [controller, setController] = useState<AbortController | null>(null);
+  const indexDBRef = useRef(new OperateIndexDB('voices', 1));
 
   const updateStorage = (params: { type: 'all' | 'cur'; messages: any }) => {
     const id = currentConversation?.id;
