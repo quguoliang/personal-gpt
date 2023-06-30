@@ -65,7 +65,7 @@ function AiBubble(props: IAiBubble) {
           <div className="text-xs text-gray-300 h-3 mb-2">
             <span className="hidden time ">{keyIndex}</span>
           </div>
-          <div className="rounded-xl p-4 text-gray-600 bg-slate-100 relative">
+          <div className="rounded-xl p-4 text-gray-600 bg-slate-100 relative dark:bg-gray-700	dark:text-gray-100">
             <ReactMarkdown
               children={content}
               remarkPlugins={[RemarkMath, RemarkGfm, RemarkBreaks]}
@@ -106,9 +106,8 @@ function AiBubble(props: IAiBubble) {
             />
             <SoundOutlined
               onClick={onSpeck}
-              className={`speak-icon absolute text-xl ${
-                (speaking || isMobile) && 'speak-icon-show'
-              } `}
+              className={`speak-icon absolute text-xl ${(speaking || isMobile) && 'speak-icon-show'
+                } `}
               style={{ right: -30, top: 5 }}
             />
           </div>
