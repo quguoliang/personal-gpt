@@ -77,7 +77,7 @@ function Header() {
   };
 
   return (
-    <header className="header">
+    <header className="header dark:border-b-gray-500">
       <div className=" flex justify-start items-center gap-4">
         {isMobile && (
           <UnorderedListOutlined
