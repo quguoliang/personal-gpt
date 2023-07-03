@@ -91,7 +91,7 @@ function Slider() {
 
   return (
     <div
-      className={`${isMobile ? 'w-full' : 'w-1/4'} overflow-auto border-r p-4`}
+      className={`${isMobile ? 'w-full' : 'w-1/4'} overflow-auto border-r p-4 dark:border-gray-500`}
     >
       <div className="flex items-center justify-between gap-4">
         <Input
