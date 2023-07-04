@@ -47,7 +47,7 @@ export const GlobalContext = createContext<{
 }>({
   config: {
     title: 'PERSONAL GPT',
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-3.5-turbo-16k',
     apiKey: '',
     temperature: 0.7,
     currentId: '',

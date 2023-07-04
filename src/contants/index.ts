@@ -10,7 +10,7 @@ export const MODEL_OPTIONS = [
   { label: 'gpt-4', value: 'gpt-4' },
   { label: 'gpt-3.5-turbo-0301', value: 'gpt-3.5-turbo-0301' },
   { label: 'gpt-3.5-turbo', value: 'gpt-3.5-turbo' },
-  { label: 'gpt-3.5', value: 'gpt-3.5' },
+  { label: 'gpt-3.5-turbo-16k', value: 'gpt-3.5-turbo-16k' },
 ];
 
 /** size列表 */
@@ -35,10 +35,10 @@ export const LANGUAGE_OPTIONS = [
 ];
 
 /** 页面展示大小 */
-export const VIEW_OPTIONS = [  
-  { label: '默认', value: 'default' }, 
-  { label: '全屏', value: 'full' },  
-]
+export const VIEW_OPTIONS = [
+  { label: '默认', value: 'default' },
+  { label: '全屏', value: 'full' },
+];
 
 /** 全部对话 */
 export const ALL_CONVERSTATIONS = 'ALL_CONVERSTATIONS';
@@ -83,7 +83,7 @@ export const generateConverstationInit = (
 
 export const generateConfigInit = (id?: string): IConfig => ({
   title: 'PERSONAL GPT',
-  model: 'gpt-3.5-turbo',
+  model: 'gpt-3.5-turbo-16k',
   apiKey: '',
   temperature: 0.7,
   currentId: id || '',
@@ -95,5 +95,5 @@ export const generateConfigInit = (id?: string): IConfig => ({
   speakLang: 'zh',
   voiceLang: 159,
   password: '',
-  viewSize:'default'
+  viewSize: 'default',
 });
