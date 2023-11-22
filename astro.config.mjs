@@ -7,5 +7,7 @@ import netlify from '@astrojs/netlify/edge-functions';
 export default defineConfig({
   integrations: [tailwind(), react()],
   output: "server",
-  adapter: netlify()
+  adapter: netlify({
+    edgeMiddleware: true,
+  }),
 });

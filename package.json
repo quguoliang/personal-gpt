@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.2",
-    "@astrojs/netlify": "^2.2.3",
+    "@astrojs/netlify": "^3.0.4",
     "@astrojs/react": "^2.2.0",
     "@astrojs/tailwind": "^4.0.0",
     "@astrojs/vercel": "^3.4.0",
