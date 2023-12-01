@@ -1,6 +1,5 @@
 import { generateUniqueString } from '@utils/common';
 import type { IConfig, IConversation } from '@views/GlobalContext';
-import { IConfig } from '../views/GlobalContext';
 
 export const BASE_URL = 'https://api.openai.com';
 
