@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { Button } from 'antd';
 import { GlobalContext, type IMessage, type IRole } from '@views/GlobalContext';
 import InputBox from './input-box';
@@ -49,7 +55,40 @@ function Main() {
     }
   };
 
+  const onAutoScroll = useCallback(
+    (bool: boolean) => {
+      let lastScrollTop = 0;
+      var element = document.getElementById('main-conversation') as HTMLElement; // 获取需要滚动的元素
+      // 在内容变化时自动滚动到底部
+      element?.addEventListener('DOMSubtreeModified', function () {
+        element.scrollTop = element?.scrollHeight || 0;
+      });
+      const DOM_EVENT = 'DOMSubtreeModified';
+
+      const rectModified = function () {
+        element.scrollTop = element?.scrollHeight || 0;
+        lastScrollTop = element?.scrollHeight || 0;
+      };
+
+      const scrollFn = function (e) {
+        if (e.target?.scrollTop < lastScrollTop) {
+          element.removeEventListener(DOM_EVENT, rectModified);
+        }
+      };
+
+      if (bool) {
+        element?.addEventListener(DOM_EVENT, rectModified);
+        element?.addEventListener('scroll', scrollFn);
+      } else {
+        element?.removeEventListener(DOM_EVENT, rectModified);
+        element?.removeEventListener('scroll', scrollFn);
+      }
+    },
+    [loading]
+  );
+
   const getGptData = async (messages: IMessage[]) => {
+    onAutoScroll(true);
     setLoading(true);
     const abortController = new AbortController();
     setController(abortController);
@@ -66,7 +105,7 @@ function Main() {
     });
     updateStorage({ type: 'cur', messages: modifyMessages });
 
-    const response = await fetch('/api/completions', {
+    const response = await fetch('/api/completions.json', {
       method: 'POST',
       body: JSON.stringify({
         model,
@@ -108,6 +147,7 @@ function Main() {
       });
       setCurMessage([]);
       setLoading(false);
+      onAutoScroll(false);
     }, 1000);
   };
 
@@ -124,7 +164,7 @@ function Main() {
     ]);
     updateStorage({ type: 'cur', messages });
     updateStorage({ type: 'all', messages });
-    const res = await fetch('/api/images', {
+    const res = await fetch('/api/images.json', {
       method: 'POST',
       body: JSON.stringify({
         n,
@@ -191,13 +231,13 @@ function Main() {
     setCurMessage([]);
   };
 
-  useEffect(() => {
-    var element = document.getElementById('main-conversation') as HTMLElement; // 获取需要滚动的元素
-    // 在内容变化时自动滚动到底部
-    element?.addEventListener('DOMSubtreeModified', function () {
-      element.scrollTop = element?.scrollHeight || 0;
-    });
-  }, []);
+  // useEffect(() => {
+  //   var element = document.getElementById('main-conversation') as HTMLElement; // 获取需要滚动的元素
+  //   // 在内容变化时自动滚动到底部
+  //   element?.addEventListener('DOMSubtreeModified', function () {
+  //     element.scrollTop = element?.scrollHeight || 0;
+  //   });
+  // }, []);
 
   return (
     <div

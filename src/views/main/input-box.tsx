@@ -40,7 +40,7 @@ function InputBox(props: IInputBox) {
   };
 
   const onGetWhisper = async (time: string, blob: Blob) => {
-    const response = await fetch(`/api/whisper`, {
+    const response = await fetch(`/api/whisper.json`, {
       method: 'POST',
       body: JSON.stringify({
         apikey: config.apiKey,
@@ -109,8 +109,9 @@ function InputBox(props: IInputBox) {
     <div className=" absolute w-full bottom-0 left-0 min-h-fit bg-white flex items-center justify-center gap-5 rounded-2xl px-7 py-3 dark:bg-gray-700">
       <Tooltip title={`${config.isContinuous ? '关闭' : '开启'}连续对话`}>
         <HistoryOutlined
-          className={`cursor-pointer ${config.isContinuous ? 'text-orange-500' : 'text-gray-300'
-            }`}
+          className={`cursor-pointer ${
+            config.isContinuous ? 'text-orange-500' : 'text-gray-300'
+          }`}
           size={32}
           onClick={onChangeContinuous}
         />
@@ -141,7 +142,7 @@ function InputBox(props: IInputBox) {
         </div>
       ) : (
         <Dropdown
-          className='dark:bg-gray-700'
+          className="dark:bg-gray-700"
           open={isOpen}
           menu={{
             items: prompts.map((item) => ({
@@ -158,7 +159,10 @@ function InputBox(props: IInputBox) {
           overlayStyle={{ height: 500, overflow: 'auto' }}
         >
           <Input.TextArea
-            classNames={{ textarea: "dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }}
+            classNames={{
+              textarea:
+                'dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500',
+            }}
             allowClear
             value={inputValue}
             autoSize={{ minRows: 1, maxRows: 3 }}
@@ -189,8 +193,9 @@ function InputBox(props: IInputBox) {
       {inputMode === 'text' && (
         <img
           src="/send.svg"
-          className={` ${!inputValue || loading ? 'cursor-not-allowed' : 'cursor-pointer'
-            }`}
+          className={` ${
+            !inputValue || loading ? 'cursor-not-allowed' : 'cursor-pointer'
+          }`}
           onClick={onSendData}
         />
       )}

@@ -1,9 +1,8 @@
 import { BASE_URL } from '@contants';
 import type { APIRoute } from 'astro';
-import { dataURLtoFile } from '.';
 
-export const post: APIRoute = async ({ request }) => {
-  const { apiKey, password, blob } = await request.json();
+export const POST: APIRoute = async ({ request }) => {
+  const { apiKey, prompt, size, n, password } = await request.json();
   let key = apiKey;
 
   if (import.meta.env.PASSWORD || process.env.PASSWORD) {
@@ -27,29 +26,19 @@ export const post: APIRoute = async ({ request }) => {
     key = import.meta.env.OPENAI_API_KEY;
   }
 
-  const typeMap: any = {
-    'audio/webm': 'webm',
-    'audio/x-m4a': 'm4a',
-    'audio/mpeg': 'mp3',
-    'audio/x-wav': 'wav',
-    'video/mp4': 'mp4',
-  };
-
   try {
-    const formData = new FormData();
-    const { file, type } = dataURLtoFile(blob, 'test');
-    formData.append('file', file, 'filename.' + typeMap[type]);
-    formData.append('model', 'whisper-1');
-    const res = await fetch(`${BASE_URL}/v1/audio/transcriptions`, {
+    const res = await fetch(`${BASE_URL}/v1/images/generations`, {
       method: 'POST',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${key}`,
       },
-      body: formData,
+      body: JSON.stringify({ prompt, n, size }),
     });
 
-    const resData = await res.json();
-    const { text, error } = resData;
+    const data = await res.json();
+    const { data: images = [], error } = data;
+
     if (error?.message) {
       return new Response(
         JSON.stringify({
@@ -60,7 +49,7 @@ export const post: APIRoute = async ({ request }) => {
     }
 
     return {
-      body: JSON.stringify({ data: text }),
+      body: JSON.stringify({ data: images?.map((img) => img.url) || [] }),
     };
   } catch (e) {
     return new Response(JSON.stringify({ msg: e?.message || e?.stack || e }), {

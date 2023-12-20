@@ -6,7 +6,7 @@ import {
   type ReconnectInterval,
 } from 'eventsource-parser';
 
-export const post: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request }) => {
   const { apiKey, model, temperature, messages, password } =
     await request.json();
   let key = apiKey;
